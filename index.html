@@ -1,497 +1,247 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sadeem</title>
-    <link rel="stylesheet" href="Libraries/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="Css/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
-  <body>
-    <script type="module">
-  // استيراد المكتبات من روابط مباشرة (CDN)
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OUR NAS</title>
 
-  // إعدادات الفايربيس الخاصة بك
-  const firebaseConfig = {
-    apiKey: "AIzaSyAdu7ecRSc0ee5PgViLOvA7OyvCKwvGvY0",
-    authDomain: "sadeem-abdullah.firebaseapp.com",
-    projectId: "sadeem-abdullah",
-    storageBucket: "sadeem-abdullah.firebasestorage.app",
-    messagingSenderId: "858590416843",
-    appId: "1:858590416843:web:a226361f6746635ec4704e"
-  };
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
 
-  // تهيئة التطبيق
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+/* Header */
+header{
+    background: linear-gradient(90deg,#00c6ff,#0072ff);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+header img{
+    width:110px;
+}
+header h1{
+    margin-top:10px;
+    letter-spacing:2px;
+}
 
-  // الحصول على عنصر الفورم
-  const contactForm = document.getElementById('contact-me');
+/* Navigation */
+nav{
+    display:flex;
+    justify-content:center;
+    background:#ffffff10;
+    backdrop-filter: blur(10px);
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:15px 20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+nav a:hover{
+    background:#ffffff30;
+    border-radius:5px;
+}
 
-  // الاستماع لحدث الإرسال
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // أهم سطر: يمنع إعادة تحميل الصفحة
+/* Section */
+section{
+    max-width:1000px;
+    margin:40px auto;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
 
-    const btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.innerText = "جاري الإرسال...";
+h2{
+    text-align:center;
+    color:#0072ff;
+    margin-bottom:30px;
+}
 
-    try {
-      // جمع البيانات من الحقول
-      const formData = {
-        Name: document.getElementById('name').value,
-        Email: document.getElementById('email').value,
-        Phone: document.getElementById('phone').value,
-        Message: document.getElementById('message').value,
-        Timestamp: new Date()
-      };
+/* Search */
+.search-form{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+.search-form select,
+.search-form input{
+    padding:12px;
+    border:2px solid #0072ff;
+    border-radius:8px;
+    min-width:180px;
+}
+.search-form button{
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    background: linear-gradient(90deg,#00c6ff,#0072ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+.search-form button:hover{
+    transform:scale(1.05);
+}
 
-      // إرسال البيانات لمجموعة "contact_me" في Firestore
-      await addDoc(collection(db, "contact_me"), formData);
+/* Services */
+.services{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+.service{
+    width:250px;
+    padding:25px;
+    border-radius:15px;
+    background:linear-gradient(145deg,#f0f9ff,#dff1ff);
+    text-align:center;
+    transition:0.3s;
+}
+.service:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+.service h3{
+    color:#0072ff;
+}
 
-      Swal.fire({
-  title: 'تم بنجاح!',
-  text: 'تم استلام رسالتك بنجاح ✅',
-  icon: 'success',
-  confirmButtonText: 'موافق',
-  confirmButtonColor: '#9d8df1', // تقدرين تغيرين اللون عشان يناسب زر الإرسال حقك
-  background: '#1a1a1a', // يخلي الخلفية غامقة تناسب موقعك
-  color: '#fff' // يخلي النص أبيض
-});
-      contactForm.reset(); // تنظيف الحقول بعد النجاح
+/* Ticket */
+.ticket{
+    border-radius:15px;
+    padding:30px;
+    background:linear-gradient(145deg,#fff5f5,#ffe3e3);
+    text-align:center;
+}
+.ticket ul{
+    list-style:none;
+    padding:0;
+}
+.ticket li{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    font-size:18px;
+}
+.ticket li:last-child{
+    border:none;
+}
 
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      alert("حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً ❌");
-    } finally {
-      btn.disabled = false;
-      btn.innerText = "Send";
-    }
-  });
-</script>
-    <!-- header  -->
-    <header class="header" id="header">
-      <nav class="nav container">
-        <a href="#" class="nav-logo">Sadeem </a>
+/* Button */
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 30px;
+    background: linear-gradient(90deg,#ff416c,#ff4b2b);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+    transition:0.3s;
+}
+.btn:hover{
+    transform:scale(1.08);
+}
 
-        <div class="nav-menu" id="nav-menu">
-          <ul class="nav-list grid">
-            <li class="nav-item">
-              <a href="#home" class="nav-link"
-                ><i class="fa-solid fa-house nav-icon"></i> Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="#about" class="nav-link"
-                ><i class="fa-solid fa-user nav-icon"></i> About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="#skills" class="nav-link"
-                ><i class="fa-solid fa-file nav-icon"></i> Skills</a
-              >
-            </li>
-            
-            <li class="nav-item">
-              <a href="#portfolio" class="nav-link"
-                ><i class="fa-solid fa-image nav-icon"></i> Projects</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="#contact" class="nav-link"
-                ><i class="fa-solid fa-message nav-icon"></i> Contact</a
-              >
-            </li>
-          </ul>
-          <i class="fa-solid fa-xmark nav-close" id="nav-close"></i>
-        </div>
+/* Footer */
+footer{
+    background: linear-gradient(90deg,#00c6ff,#0072ff);
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:40px;
+}
+</style>
+</head>
 
-        <div class="nav-btns">
-          <!-- theme btn  -->
-          <i class="fa-regular fa-moon change-theme" id="theme-button"></i>
+<body>
 
-          <div class="nav-toggle" id="nav-toggle">
-            <i class="fa-solid fa-bars"></i>
-          </div>
-        </div>
-      </nav>
-    </header>
+<header>
+    <h1>OUR NAS</h1>
+</header>
 
-    <main class="main">
-      <section class="home section" id="home">
-        <div class="home-container container grid">
-          <div class="home-content grid">
-            <div class="home-social">
-              <a
-                href="https://www.linkedin.com/in/sadeem-abdullah-07b87b3ab/"
-                target="_blank"
-                class="home-social-icon"
-              >
-                <i class="fa-brands fa-linkedin-in"></i>
-              </a>
-              <a href="tel:+966563295486" target="_blank" class="home-social-icon">
-              <i class="fa-solid fa-phone"></i>
-              </a>
-              <a href="mailto:sdeem022@gmail.com" target="_blank" class="home-social-icon">
-            <i class="fa-regular fa-envelope"></i>
-            </a>
-            </div>
+<nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">معلومات عنا</a>
+    <a href="#">الرحلات</a>
+    <a href="#">اتصل بنا</a>
+</nav>
 
-            <div class="home-img">
-              <svg
-                class="home-blob"
-                viewBox="0 0 200 187"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <mask id="mask0" mask-type="alpha">
-                  <path
-                    d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-        130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-        97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-        0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                  />
-                </mask>
-               
-                  
-                  />
-                  <image
-                    class="home-blob-img"
-                    x="-15"
-                    y="-30"
-                    href="Assets/Icons/Coding.gif"
-                  />
-                
-              </svg>
-            </div>
-
-            <div class="home-data">
-              <h1 class="home-title">Hi, I am Sadeem Abdullah</h1>
-              <h3 class="home-subtitle">Wep Developer</h3>
-              <p class="home-description">
-                Web Developer focused on building and developing web projects.
-              </p>
-              <a href="#contact" class="button button-flex">
-                Contact Me <i class="fa-regular fa-envelope button-icon"></i>
-              </a>
-            </div>
-          </div>
-          <div class="home-scroll">
-            <a href="#about" class="home-scroll-button button-flex">
-              <!-- <i class="fa-solid fa-computer-mouse home-scroll-mouse"></i> -->
-              <img class="home-scroll-mouse" src="Assets/mouse.svg" alt="" />
-              <span class="home-scroll-name">Scroll down</span>
-              <i class="fa-solid fa-angles-down home-scroll-arrow"></i>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="about section" id="about">
-        <h2 class="section-title">About Me</h2>
-      <span class="section-subtitle">My Introduction</span>
-
-      <div class="about-container container"></div>
-
-          <div class="about-data">
-            <p class="about-description">
-              Web Development Graduate
-I design and develop simple, responsive web interfaces using core web technologies.
-I aim to apply what I’ve learned in practice and build clear, user friendly websites
-            </p>
-
-
-            <div class="about-buttons">
-              <a
-                download=""
-                href="Assets/my_resume.pdf"
-                class="button button-flex"
-              >
-                Download Resume<i
-                  class="fa-solid fa-file-arrow-down button-icon"
-                ></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-     <!-- skills and qualification  -->
-<section class="skills section" id="skills">
-  <h2 class="section-title">Skills</h2>
-  <span class="section-subtitle">My Technical Skills</span>
-  <div class="skills-content container">
-    <div class="skills-name">HTML</div>
-    <div class="skills-name">CSS</div>
-    <div class="skills-name">JavaScript</div>
-    <div class="skills-name">MySQL</div>
-    <!-- <div class="skills-name">Android Studio</div> -->
-    <div class="skills-name">Oracle APEX</div>
-    <div class="skills-name">Java</div>
-     <div class="skills-name">Power BI</div>
-      <div class="skills-name">SQL</div>
-      <!-- <div class="skills-name">MySQL</div> -->
-  </div>
-</section>
-
-<section class="qualification section">
-  <h2 class="section-title">Qualification</h2>
-  <span class="section-subtitle">My journey</span>
-
-  <div class="qualification-container container">
-    <div class="qualification-tabs">
-      <div
-        class="qualification-button button-flex qualification-active"
-        data-target="#education"
-      >
-        <i class="fa-solid fa-graduation-cap qualification-icon"></i>
-        Education
-      </div>
-    </div>
-
-    <div class="qualification-section">
-      <div
-        class="qualification-content qualification-active"
-        data-content
-        id="education"
-      >
-        <!-- qualifi 1 -->
-        <div class="qualification-data">
-          <div>
-            <h3 class="qualification-title">
-              Technical and Vocational Training Corporation (TVTC)
-            </h3>
-            <span class="qualification-subtitle">Web Programming and Development Diploma</span>
-            <div class="qualification-date">
-              <i class="fa-solid fa-calendar-days"></i>
-              2026 - Present
-            </div>
-          </div>
-          <div>
-            <span class="qualification-round"></span>
-            <span class="qualification-line"></span>
-          </div>
-        </div>
-
-        <!-- qualifi 2: IT -->
-        <div class="qualification-data">
-          <div></div>
-          <div>
-            <span class="qualification-round"></span>
-            <!-- لا يوجد خط بعد الدائرة الأخيرة -->
-          </div>
-          <div>
-            <h3 class="qualification-title">IT</h3>
-            <span class="qualification-subtitle">Al Noor Specialist Hospital</span>
-            <div class="qualification-date">
-              <i class="fa-solid fa-calendar-days"></i>
-              2026 - Present
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-      
-
-      <!-- portfolio -->
-      <section class="portfolio section" id="portfolio">
-        <h2 class="section-title">Projects</h2>
-        <span class="section-subtitle">Most recent work</span>
-
-        <div class="portfolio-container container swiper-container">
-          <div class="swiper-wrapper">
-            <!-- project1  -->
-            <div class="portfolio-content grid swiper-slide">
-              <img src="Assets/Icons/لقطة شاشة 2026-02-12 104430.png" alt="" class="portfolio-img" />
-
-              <div class="portfolio-data">
-                <h3 class="portfolio-title">Wasal</h3>
-                <p class="portfolio-description">
-                 Wasal Project is a specialized booking system designed to manage "Haram Cart" services. 
-                 It aims to facilitate the booking process for pilgrims and visitors, 
-                 allowing them to reserve carts easily through a digital platform that ensures organization and speed of service.
-                <p class="portfolio-description"><strong>Tools:</strong>PHP, MySQL,CSS</p>
-
-                </p>
-                <a
-                  href="https://github.com/Sadeem022/Wasal-project"
-                  target="_blank"
-                  class="button button-flex button-small portfolio-button"
-                  >Project Link
-                  <i class="fa-solid fa-arrow-right button-icon"></i
-                ></a>
-              </div>
-            </div>
-            <!-- project2  -->
-            <div class="portfolio-content grid swiper-slide">
-              <img src="Assets/Icons/WhatsApp Image 2026-02-12 at 10.48.32 AM.jpeg" alt="" class="portfolio-img" />
-
-              <div class="portfolio-data">
-                <h3 class="portfolio-title">Our Nas</h3>
-                <p class="portfolio-description">
-                  A flight booking platform designed to streamline travel reservations, 
-                  focusing on a structured layout for flight searching and booking management.
-                  <p class="portfolio-description"><strong>Tools:</strong> Hand-coded with Notepad (HTML & CSS)</p>
-                </p>
-                <a
-                  href=" https://sdeem022.github.io/Our-Nas/"
-                  target="_blank"
-                  class="button button-flex button-small portfolio-button"
-                  >Project Link
-                  <i class="fa-solid fa-arrow-right button-icon"></i
-                ></a>
-              </div>
-            </div>
-            <!-- project3  -->
-            <div class="portfolio-content grid swiper-slide">
-              <img src="Assets/Icons/legal assistant.png" alt="" class="portfolio-img" />
-
-              <div class="portfolio-data">
-                <h3 class="portfolio-title">Legal Assistant</h3>
-                <p class="portfolio-description">
-                 A digital platform simplifying Saudi regulations, providing access to legal laws,
-                 ready-to-use templates, and procedural guidance for individuals and companies.
-                </p>
-                <p class="portfolio-description"><strong>Tools:</strong> Designed with Figma</p>
-                <a
-                  href="https://www.figma.com/proto/ZdKbEJk24e90r5lbz2CTkr/%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B9%D8%AF-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A?node-id=0-1&t=1E8WRf27syEr4kX1-1"
-                  target="_blank"
-                  class="button button-flex button-small portfolio-button"
-                  >Project Link
-                  <i class="fa-solid fa-arrow-right button-icon"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-angles">
-            <div class="swiper-button-next">
-              <i class="fa-solid fa-angle-right swiper-icon"></i>
-            </div>
-            <div class="swiper-button-prev">
-              <i class="fa-solid fa-angle-left swiper-icon"></i>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </section>
-      
-            
-      <!-- contact me  -->
-     <section class="contact section" id="contact">
-  <div class="contact-form-wrapper d-flex justify-content-center">
-    <form class="contact-form" id="contact-me">
-      <h5 class="title">Contact Me</h5>
-
-      <div>
-        <input type="text" class="form-control rounded border-white mb-3 form-input" id="name" placeholder="Name" required>
-      </div>
-
-      <div>
-        <input type="email" class="form-control rounded border-white mb-3 form-input" id="email" placeholder="Email" required>
-      </div>
-
-      <div>
-        <input type="tel" id="phone" class="form-control rounded border-white mb-3 form-input" placeholder="Phone Number" required>
-      </div>
-
-      <div>
-        <textarea id="message" class="form-control rounded border-white mb-3 form-text-area" rows="5" placeholder="Message" required></textarea>
-      </div>
-
-      <div class="submit-button-wrapper">
-        <button type="submit" id="submit-btn" class="btn btn-primary">إرسال</button>
-      </div>
+<section>
+    <h2>ابحث عن رحلتك</h2>
+    <form class="search-form">
+        <select>
+            <option>من</option>
+            <option>الرياض</option>
+            <option>القاهرة</option>
+            <option>دبي</option>
+        </select>
+        <select>
+            <option>إلى</option>
+            <option>باريس</option>
+            <option>لندن</option>
+            <option>نيويورك</option>
+        </select>
+        <input type="date">
+        <button>ابحث</button>
     </form>
-  </div>
 </section>
-        <div class="contact-container container grid">
-          <div>
-            <div class="contact-info">
-              <i class="fa-regular fa-envelope contact-icon"></i>
-              <div>
-                <h3 class="contact-title">Email</h3>
-                <a
-                  href="mailto:sdeem022@gmail.com"
-                  target="_blank"
-                  class="contact-subtitle"
-                  >sdeem022@gmail.com</a
-                >
-              </div>
-            </div>
-            <div class="contact-info">
-              <i class="fa-brands fa-linkedin-in contact-icon"></i>
-              <div>
-                <h3 class="contact-title">Linkedin</h3>
-                <a
-                  class="contact-subtitle"
-                  href="https://www.linkedin.com/in/sadeem-abdullah-07b87b3ab/"
-                  target="_blank"
-                  >@Sadeem Abdullah</a
-                >
-              </div>
-            </div>
-          </div>
+
+<section>
+    <h2>خدماتنا</h2>
+    <div class="services">
+        <div class="service">
+            <h3>✈️ رحلات دولية</h3>
+            <p>أفضل الأسعار حول العالم</p>
         </div>
-      </section>
-
-      <!-- footer  -->
-      <footer class="footer">
-        <div class="footer-bg">
-          <div class="footer-container container grid">
-            <div>
-              <h1 class="footer-title">Sadeem Abdullah</h1>
-              <span class="footer-subtitle">Web Developer</span>
-            </div>
-            <ul class="footer-links">
-              <li>
-                <a href="#about" class="footer-link">about</a>
-              </li>
-              <li>
-                <a href="#portfolio" class="footer-link">Projects</a>
-              </li>
-              <li>
-                <a href="#contact" class="footer-link">Contact</a>
-              </li>
-            </ul>
-
-            <div class="footer-socials">
-              <a
-                href="https://www.linkedin.com/in/sadeem-abdullah-07b87b3ab/"
-                target="_blank"
-                class="footer-social"
-              >
-                <i class="fa-brands fa-linkedin-in"></i>
-              </a>
-              <a href="tel:+966563295486" target="_blank" class="home-social-icon" style="color:white;">
-              <i class="fa-solid fa-phone"></i>
-              </a>
-
-             &nbsp; &nbsp; <a href="mailto:sdeem022@gmail.com" target="_blank" class="home-social-icon" style="color:white;">
-              <i class="fa-regular fa-envelope"></i>
-              </a>
-            </div>
-          </div>
-          <p class="footer-copy">By Sadeem</p>
+        <div class="service">
+            <h3>🏠 رحلات محلية</h3>
+            <p>سفر سريع ومريح</p>
         </div>
-      </footer>
-    </main>
+        <div class="service">
+            <h3>📞 خدمة العملاء</h3>
+            <p>دعم 24/7</p>
+        </div>
+    </div>
+</section> 
+<section>
+    <h2>تذكرة VIB</h2>
+    <div class="ticket">
+        <ul>
+            <li>✈️ مقاعد فاخرة</li>
+            <li>🍽 وجبات مجانية</li>
+            <li>🛏 صالة كبار الشخصيات</li>
+            <li>🚗 نقل من وإلى المطار</li>
+        </ul>
+        <a href="#" class="btn">احجز الآن</a>
+    </div>
+</section>
 
-    <a href="#home" class="scrollup" id="scroll-up">
-      <i class="fa-solid fa-arrow-up scroll-up-icon"></i>
-    </a>
-    <script src="Libraries/swiper-bundle.min.js"></script>
-    <script
-      src="https://kit.fontawesome.com/9b634c15bd.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="script.js"></script>
-  </body>
+<section style="text-align:center;">
+    <h2>الدفع مع تابي</h2>
+    <button id="tabby-button" class="btn">ادفع مع تابي</button>
+</section>
+
+<footer>
+    جميع الحقوق محفوظة © 2026 OUR NAS
+</footer>
+
+<script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+<script>
+tabbyPromo('#tabby-button', {
+    price: 100,
+    currency: 'SAR',
+    source: 'product-page'
+});
+</script>
+
+</body>
 </html>
